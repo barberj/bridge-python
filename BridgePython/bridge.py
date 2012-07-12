@@ -260,4 +260,3 @@ class _SystemService(object):
     def remoteError(self, msg):
         logging.warning(msg)
         self._bridge.emit('remote_error', msg)
-

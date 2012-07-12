@@ -1,18 +1,11 @@
-import types
-import random
-import string
-import logging
-import traceback
-
 from BridgePython import reference, util
-
 
 
 class Callback(object):
     def __init__(self, func):
         # We need a wrapper object to avoid binding func as a method.
         self.wrap = (func,)
-  
+
     def callback(self, *args):
         # Callback method so callbacks make sense to statically typed languages
         cb = self.wrap[0]
@@ -54,7 +47,7 @@ def unserialize(bridge, obj):
             container[key] = bridge._store[address[2]]
             if hasattr(container[key], 'callback'):
                 container[key] = container[key].wrap[0]
-        else:           
+        else:
             # Create reference
             ref = reference.Reference(bridge, address, ops)
             if ref._operations == ['callback']:
@@ -64,5 +57,3 @@ def unserialize(bridge, obj):
             else:
                 container[key] = ref
     return obj
-
-

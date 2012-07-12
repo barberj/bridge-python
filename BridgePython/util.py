@@ -2,12 +2,9 @@ import types
 import random
 import string
 import logging
-import traceback
 import json
 
 from tornado.escape import utf8, native_str
-
-from BridgePython import reference
 
 primitives = set((int, str, bool, float, tuple, list, dict, type(None)))
 try:
@@ -36,7 +33,7 @@ def generate_guid():
     return ''.join([
         random.choice(string.ascii_letters) for k in range(32)
     ])
-    
+
 
 def stringify(val):
     return utf8(json.dumps(val, default=str))
